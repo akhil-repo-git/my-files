@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form > h3{
+            text-align: center;
+        }
+
+        input{
+            padding:20px;
+        }
+
+        .container{
+            width: 60%;
+            margin:auto;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+    <form onsubmit="login(event)">
+        <h3>Login</h3>
+        
+        <input placeholder="Enter Email" id="email" type="email">         
+        <input placeholder="Enter Password" id="pass" type="password"> 
+        <input type="submit">
+    </form>
+    
+    </div>
+
+    <script>
+
+        //carousel();
+        function login(event)
+        {
+            event.preventDefault();
+            console.log(event);
+
+            var email=document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+
+            if(email==''|| pass=='')
+                alert("please enter your credentials");
+            else
+                checkUser(email,pass);        
+        }
+
+        function checkUser(email,pass)
+        {
+            var user =JSON.parse(localStorage.getItem('user'));
+
+            if(user.email==email&& user.pass == pass)
+                document.location="home.html";
+            else    
+                alert("Wrong email/password please check again");
+        }
+
+
+    </script>
+</body>
+</html>

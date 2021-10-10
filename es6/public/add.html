@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Welcome to this tutorial</h2>
+
+    <button onclick="getCall()">GET REQUEST</button>
+
+    <button onclick="postCall()">POST REQUEST</button>
+
+    <button onclick="putCall()">PUT REQUEST</button>
+
+    <button onclick="deleteCall()">DELETE REQUEST</button>
+    
+<script>
+
+async function postCall(){
+            let res = await fetch('http://localhost:5000/api/products/',{
+                method:'POST',
+                body:{
+                    "id":500,
+                    "name":"jhonson",
+                    "age":"25"
+                }
+            });
+            let data = await res.json();
+            console.log(data);
+    }
+
+
+
+    async function getCall(){
+            let res = await fetch('http://localhost:5000/api/users/');
+            let data = await res.json();
+            console.log(data);
+    }
+
+    async function putCall(){
+            let res = await fetch('http://localhost:5000/api/users/2',{
+                method:'PUT',
+                body:{
+                    "name":"dwanye jhonson",
+                    "active":"true"
+                }
+            });
+            let data = await res.json();
+            console.log(data);
+    }
+
+    async function deleteCall(){
+            let res = await fetch('http://localhost:5000/api/users/3',{
+                method:'DELETE'
+            });
+            let data = await res.json();
+            console.log(data);
+    }
+
+</script>
+</body>
+</html>
+

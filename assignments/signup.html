@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form > h3{
+            text-align: center;
+        }
+
+        input{
+            padding:20px;
+        }
+
+        .container{
+            width: 60%;
+            margin:auto;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+    <form onsubmit="signup(event)">
+        <h3>Signup Form</h3>
+        <input placeholder="Enter Name" id="name" type="text"> 
+        <input placeholder="Enter Email" id="email" type="email"> 
+        <input placeholder="Enter Phone" id="phone" type="number"> 
+        <input placeholder="Enter Password" id="pass" type="password"> 
+        <input type="submit">
+    </form>
+    
+    </div>
+
+    <script>
+
+        function signup(event)
+        {
+            event.preventDefault();
+            console.log(event);
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var pass = document.getElementById("pass").value;
+
+
+            if(checkData(name,email,phone,pass))
+                storeUser(name,email,phone,pass);
+            else    
+                alert("Enter valid data")    
+            
+        }
+
+        function checkData(name,email,phone,pass)
+        {
+                if(name==''|| email=='' || phone=='' || pass=='')
+                    return false;
+                else 
+                    return true;    
+        }
+
+        function storeUser(name,email,phone,pass)
+        {
+               var user ={
+                   name:name,
+                   email:email,
+                   phone:phone,
+                   pass:pass
+               }     
+
+               localStorage.setItem('user',JSON.stringify(user));
+               document.location="login.html";
+
+        }
+    </script>
+</body>
+</html>
